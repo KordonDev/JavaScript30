@@ -15,7 +15,41 @@
     </ul>
   </form>
 <script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const cities = [];
+    
+    fetch(endpoint)
+        .then(blob => blob.json())
+        .then(data => cities.push(...data));
+
+    function filterCities(searchValue) {
+        return cities.filter(location => location.city.toLowerCase().includes(searchValue.toLowerCase()) || location.state.toLowerCase().includes(searchValue.toLowerCase()));
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function updateSuggestions() {
+        const filteredCities = filterCities(this.value);
+        var html = filteredCities.map(city => {
+            const regex = new RegExp(this.value, 'gi');
+            const cityName = city.city.replace(regex, `<span class="hl">${this.value}</span>`);
+            const cityState = city.state.replace(regex, `<span class="hl">${this.value}</span>`);
+            return `
+                <li>
+                    <span class="name">${cityName}, ${cityState}</span>
+                    <span class="population">${numberWithCommas(city.population)}</span>
+                </li>` 
+        }).join('');
+        suggestionList.innerHTML = html;
+    }
+
+    const searchInput = document.querySelector('.search');
+    const suggestionList = document.querySelector('.suggestions');
+
+    searchInput.addEventListener('change', updateSuggestions);
+    searchInput.addEventListener('keyup', updateSuggestions);
 
 </script>
   </body>
