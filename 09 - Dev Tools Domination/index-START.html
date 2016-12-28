@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,28 +18,60 @@
     }
 
     // Regular
+    console.log('Hello');
 
     // Interpolated
+    const name = 'KordonDev';
+    console.log(`Hello ${name}`);
 
     // Styled
+    console.log('%c Hello red', 'font-size: 20px; color: red');
 
     // warning!
+    console.warn('Be carefull');
 
     // Error :|
+    console.error('Danger Danger!');
 
     // Info
+    console.info('This is a good tutorial');
 
     // Testing
+    console.assert(true === false,  'Boolean operator are wrong!');
+    console.assert(!true === false, 'Boolean operator are fine!');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    var p = document.querySelector('p');
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
-
+    dogs.forEach(dog => {
+        console.group(`${dog.name}`);
+        console.log(`My name is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.groupEnd(`${dog.name}`);
+    });
+    
     // counting
+    console.count('KordonDev');
+    console.count('Wes');
+    console.count('KordonDev');
+    console.count('Wes');
+    console.count('KordonDev');
+    console.count('KordonDev');
+    console.count('Wes');
+    console.count('Wes');
+    console.count('KordonDev');
+    console.count('KordonDev');
+    console.count('KordonDev');
 
     // timing
+    console.time('time timeout');
+    setTimeout(() => console.timeEnd('time timeout'), 1000);
 
   </script>
 </body>
