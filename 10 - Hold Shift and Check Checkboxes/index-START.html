@@ -104,6 +104,21 @@
   </div>
 
 <script>
+
+    const checkboxes = [...document.querySelectorAll('input[type=checkbox]')];
+    let lastCheckboxIndex;
+
+    function clickCheckbox(e) {
+        if (e.shiftKey && lastCheckboxIndex) {
+              let currentElementIndex = checkboxes.indexOf(this); 
+              let changeCheckboxes = checkboxes.filter((checkbox, index) => (index > lastCheckboxIndex && index < currentElementIndex) || (index < lastCheckboxIndex && index > currentElementIndex));
+              changeCheckboxes.map(checkbox => checkbox.checked = !checkbox.checked);
+        } 
+        lastCheckboxIndex = checkboxes.indexOf(this); 
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', clickCheckbox));
+
 </script>
 </body>
 </html>
