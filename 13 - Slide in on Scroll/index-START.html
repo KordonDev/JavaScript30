@@ -58,6 +58,23 @@
       };
     }
 
+    const images = document.querySelectorAll('img');
+    function checkShow(e) {
+        images.forEach(image => {
+            const imageBottomY = image.offsetTop + image.height;
+            const imageHalfY = image.offsetTop + (image.height / 2);
+            const windowTopY = window.scrollY;
+            const windowBottomY = window.scrollY + window.innerHeight;
+            if (imageHalfY < windowBottomY && imageBottomY > windowTopY) {
+                image.classList.add('active');
+            } else {
+                image.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', debounce(checkShow));
+
   </script>
 
   <style>
