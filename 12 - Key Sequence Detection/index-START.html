@@ -7,6 +7,19 @@
 </head>
 <body>
 <script>
+    const secret = 'kordon';
+    let pressedKeys = [];
+
+    function handleKeypress(e) {
+        pressedKeys.push(e.key);
+        pressedKeys.splice(-secret.length - 1, pressedKeys.length - secret.length);
+        console.log(pressedKeys);
+        if (pressedKeys.join('').includes(secret)) {
+            cornify_add();
+        }
+    }
+
+    window.addEventListener('keyup', handleKeypress);
 </script>
 </body>
 </html>
