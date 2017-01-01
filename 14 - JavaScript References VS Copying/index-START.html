@@ -8,6 +8,20 @@
 
   <script>
     // start with strings, numbers and booleans
+    let number = 10;
+    let number2 = number;
+    number2 = 5;
+    console.log(number, number2);
+
+    let string = 'Kordon';
+    let string2 = string;
+    string2 = 'KordonDev';
+    console.log(string, string2);
+
+    let bool = true;
+    let bool2 = bool;
+    bool2 = false;
+    console.log(bool, bool2);
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
@@ -15,36 +29,67 @@
     // and we want to make a copy of it.
 
     // You might think we can just do something like this:
+    let players2 = players;
 
     // however what happens when we update that array?
+    players2[3] = 'KordonDev';
 
     // now here is the problem!
+    console.log(players2, players);
 
     // oh no - we have edited the original array too!
 
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    let player3 = players.slice();
+    player3[3] = 'Kordon';
 
     // one day
+    console.log(player3, players);
 
     // or create a new array and concat the old one in
+    let player4 = [].concat(players);
+    player4[3] = 'New';
+
+    console.log(player4, players);
+
 
     // or use the new ES6 Spread
+    let player5 = [...players];
+    player5[3] = 'Captain';
+    
+    console.log(player5, players);
 
     // now when we update it, the original one isn't changed
 
     // The same thing goes for objects, let's say we have a person object
 
     // with Objects
+    let object = {
+        course: 'JavaScript',
+        number: 14,
+        status: {
+            date: null,
+            done: false
+        }
+    };
 
     // and think we make a copy:
+    let object2 = object;
+    object2.name = 'JavaScript30';
+    console.log(object2, object);
 
     // how do we take a copy instead?
+    let object3 = Object.assign({}, object, {number: 15});
+    console.log(object3, object);
 
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    object3.status.done = true;
+    console.log(object3.status, object.status);
+
 
   </script>
 
