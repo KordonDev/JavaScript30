@@ -25,12 +25,33 @@
   }
 
   h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
     font-size: 100px;
   }
   </style>
 
 <script>
+    const hero = document.querySelector('.hero');
+    const heroText = document.querySelector('h1');
+    const {innerWidth: width, innerHeight: height} = window;
+    const maximumShadowGab = Math.min(width, height)/4;
+
+    function moveShadow(event) {
+        let { offsetX: x, offsetY: y} = event;
+
+        if (this !== event.target) {
+            x += event.target.offsetLeft;
+            y += event.target.offsetTop;
+        }
+
+        let shadowGabX = (x/width) * maximumShadowGab - (maximumShadowGab/2);
+        let shadowGabY = (y/height) * maximumShadowGab - (maximumShadowGab/2);
+        heroText.style.textShadow = `${shadowGabX}px ${shadowGabY}px 0 red,
+            ${shadowGabX * -1}px ${shadowGabY}px 0 blue,
+            ${shadowGabX}px ${shadowGabY * -1}px 0 green,
+            ${shadowGabX * -1}px ${shadowGabY * -1}px 0 brown`;
+    }
+
+    hero.addEventListener('mousemove', moveShadow);
 </script>
 </body>
 </html>
