@@ -46,6 +46,10 @@ nav {
   transition:all 0.5s;
   position: relative;
   z-index: 1;
+
+}
+.fixed nav {
+  position: fixed;
 }
 
 nav ul {
@@ -70,6 +74,10 @@ li.logo {
   transition: all .5s;
   font-weight: 600;
   font-size: 30px;
+}
+
+.fixed .logo {
+    max-width: 500px;
 }
 
 li.logo a {
