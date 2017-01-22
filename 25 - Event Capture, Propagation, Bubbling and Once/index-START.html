@@ -39,6 +39,18 @@
 
 <button></button>
 <script>
+    
+    const divs = document.querySelectorAll('div');
+
+    function logClick(e) {
+        console.log(this.classList.value);
+        e.stopPropagation();
+    }
+
+    divs.forEach(div => div.addEventListener('click', logClick, {
+        capture: true,
+        once: true
+    }));
 
 </script>
 </body>
